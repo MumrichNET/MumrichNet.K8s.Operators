@@ -11,4 +11,8 @@
     <PackageReference Include="KubeOps" Version="7.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="K8sObjects\" />
+  </ItemGroup>
+
 </Project>

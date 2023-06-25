@@ -8,6 +8,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{7399
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
+		build.ps1 = build.ps1
+		build.sh = build.sh
 		GitVersion.yml = GitVersion.yml
 		LICENSE.txt = LICENSE.txt
 		nuget.config = nuget.config
@@ -15,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{7399
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MumrichNet.K8s.Operators.MyOperator", "src\MumrichNet.K8s.Operators.MyOperator\MumrichNet.K8s.Operators.MyOperator.csproj", "{6F3B7269-AF09-47A1-8102-09ED5800E075}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{A55FD96E-1203-4494-AA3C-63089B3D53B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +30,10 @@ Global
 		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A55FD96E-1203-4494-AA3C-63089B3D53B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A55FD96E-1203-4494-AA3C-63089B3D53B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A55FD96E-1203-4494-AA3C-63089B3D53B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A55FD96E-1203-4494-AA3C-63089B3D53B6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

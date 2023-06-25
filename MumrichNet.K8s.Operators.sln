@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{73992BD4-D4C3-4990-A06B-C0A8A7C19888}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".global", ".global", "{73992BD4-D4C3-4990-A06B-C0A8A7C19888}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.gitattributes = .gitattributes
@@ -14,12 +14,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MumrichNet.K8s.Operators.MyOperator", "src\MumrichNet.K8s.Operators.MyOperator\MumrichNet.K8s.Operators.MyOperator.csproj", "{6F3B7269-AF09-47A1-8102-09ED5800E075}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F3B7269-AF09-47A1-8102-09ED5800E075}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF45BB6B-AA12-48E9-9496-591A52EFC413}
 	EndGlobalSection
 EndGlobal

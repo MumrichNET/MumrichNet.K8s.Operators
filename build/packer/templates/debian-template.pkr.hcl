@@ -1,7 +1,24 @@
+#     PockerISO: Use Packer + Docker to make bootable images
+#     Copyright (C) 2022  Shantanoo 'Shan' Desai <sdes.softdev@gmail.com>
+
+#     This program is free software: you can redistribute it and/or modify
+#     it under the terms of the GNU General Public License as published by
+#     the Free Software Foundation, either version 3 of the License, or
+#     (at your option) any later version.
+
+#     This program is distributed in the hope that it will be useful,
+#     but WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#     GNU General Public License for more details.
+
+#     You should have received a copy of the GNU General Public License
+#     along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
 packer {
   required_plugins {
     docker = {
-      version = ">= 1.0.0"
+      version = ">= 1.0.1"
       source  = "github.com/hashicorp/docker"
     }
   }
@@ -24,16 +41,6 @@ variable distro_kernel {
   type = string
 }
 
-variable output_dir {
-  type    = string
-  default = "."
-}
-
-variable artifacts_dir {
-  type    = string
-  default = "."
-}
-
 locals {
   distro_docker_image = "${var.distro}:${var.distro_version}"
 }
@@ -43,33 +50,31 @@ source "docker" "filesystem-container" {
   image       = "${local.distro_docker_image}"
   pull        = false # save bandwidth and avoid multiple pulls to same image
   platform    = "${var.distro_platform}"
-  export_path = "${var.output_dir}/${var.distro}.tar"
+  export_path = "./${var.distro}.tar"
 }
 
 # This source will be use to create a Bootable Disk Image from the Generated Filesystem
 source "docker" "partition-container" {
-  image      = "debian:bullseye"
+  image      = "${local.distro_docker_image}"
   pull       = false
   platform   = "${var.distro_platform}"
   discard    = true
   cap_add    = ["SYS_ADMIN"]
   privileged = true
   volumes = {
-    "${path.cwd}" : "/os",
-    "${var.output_dir}" : "/output",
-    "${var.artifacts_dir}" : "/artifacts"
+    "${path.cwd}" : "/os"
   }
 }
 
 build {
-  # Install and configure
+  # Install the Respective Kernel and SystemD
   name    = "gen-fs-tarball"
   sources = ["source.docker.filesystem-container"]
   provisioner "shell" {
     inline = [
-      "apk update",
-      "apk add ${var.distro_kernel}",
-      "apk add openrc",
+      "apt-get update",
+      "apt-get install -y ${var.distro_kernel}",
+      "apt-get install -y --no-install-recommends systemd-sysv",
       "echo \"root:root\" | chpasswd"
     ]
   }
